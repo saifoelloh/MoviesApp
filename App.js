@@ -1,5 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, View, StatusBar} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import Axios from 'axios';
 
 export default class App extends React.Component {
   state = {
@@ -23,21 +31,53 @@ export default class App extends React.Component {
       },
     ],
   };
+
+  getData = () => {
+    const params = {
+      api_key: '2241cf83e2969999da0f62a2d1367cda',
+      language: 'id',
+      page: 1,
+      region: 'id',
+    };
+
+    Axios.get('https://api.themoviedb.org/3/tv/', {params: params})
+      .then(res => {
+        let getMovies = res.data.results.map(movie => {
+          return {
+            id: movie.id,
+            title: movie.title,
+            image: `https://image.tmdb.org/t/p/w500/${movie.poste_path}`,
+            description: movie.overeview,
+          };
+        });
+
+        this.setState({
+          movies: getMovies,
+        });
+      })
+      .catch(err => console.error(err));
+  };
+
+  componentDidMount() {
+    this.getData();
+  }
   render() {
-    const msg = 'Hallo';
+    const title = 'welcome';
     return (
       <View>
-        <Text>Open up App.js {msg}</Text>
-        {this.state.movies.map((movie, key) => (
-          <Card
-            key={key}
-            image={movie.image}
-            title={movie.title}
-            description={movie.description}
-          />
-        ))}
-        <Card />
-        <Card />
+        <Text>{title.toUpperCase()}</Text>
+        <ScrollView showsHorizontalScrollIndicator={true}>
+          {this.state.movies.map((movie, key) => (
+            <TouchableOpacity>
+              <Card
+                key={movie.id}
+                image={movie.image}
+                title={movie.title}
+                description={movie.description}
+              />
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
     );
   }
@@ -60,9 +100,15 @@ class Card extends React.Component {
 const style = StyleSheet.create({
   container: {
     marginTop: StatusBar.currentHeight,
-    padding: 50,
+    padding: 20,
     flex: 1,
     flexDirection: 'row',
+    backgroundColor: 'lightbluesky',
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: '100',
   },
   cardContainer: {
     marginVertical: 8,
