@@ -1,0 +1,8 @@
+App	/home/hyoizaburo/Belajar/doscom/MovieApp/App.js	/App/;"	f	lineno:4	type:void function()
+React	/home/hyoizaburo/Belajar/doscom/MovieApp/App.js	/React/;"	v	lineno:1
+StyleSheet	/home/hyoizaburo/Belajar/doscom/MovieApp/App.js	/StyleSheet/;"	v	lineno:2
+View	/home/hyoizaburo/Belajar/doscom/MovieApp/App.js	/View/;"	v	lineno:2
+prototype	/home/hyoizaburo/Belajar/doscom/MovieApp/App.js	/class App extends React\.Component \{/;"	v	lineno:4	namespace:App
+render	/home/hyoizaburo/Belajar/doscom/MovieApp/App.js	/render/;"	f	lineno:5	namespace:App.prototype	type:boolean function()
+style	/home/hyoizaburo/Belajar/doscom/MovieApp/App.js	/style/;"	v	lineno:7	type:boolean
+styles	/home/hyoizaburo/Belajar/doscom/MovieApp/App.js	/styles/;"	v	lineno:14
